@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // import pages
+import LandingPage from "./pages/landing";
 import LoginPage from "@/pages/sign-in";
 import RegisterPage from "@/pages/sign-up";
-import LandingPage from "./pages/landing";
+import ResetPage from "@/pages/reset";
 // handle router error
 import ErrorPage from "@/pages/error";
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <RegisterPage />,
+      },
+      {
+        path: "reset",
+        element: <ResetPage />,
       },
     ],
   },

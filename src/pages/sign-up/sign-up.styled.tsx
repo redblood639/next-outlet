@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import bgImage from "@/assets/images/image.png";
 import UserImg from "@/assets/images/user.png";
 
 export const RegisterWrapper = styled.div`
@@ -8,16 +7,6 @@ export const RegisterWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const BgImage = styled.div`
-  width: 50%;
-  height: 100%;
-  filter: blur(2px);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url(${bgImage});
 `;
 
 export const UserImage = styled.div`

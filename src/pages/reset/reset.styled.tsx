@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import UserImg from "@/assets/images/user.png";
+import ResetImg from "@/assets/images/reset.png";
 
-export const LoginPageWrapper = styled.div`
+export const ResetWrapper = styled.div`
   /*  */
   flex: 1;
   display: flex;
@@ -15,7 +15,7 @@ export const UserImage = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(${UserImg});
+  background-image: url(${ResetImg});
 
   position: absolute;
   top: -62px;
@@ -25,7 +25,7 @@ export const LoginCard = styled.div`
   position: relative;
 
   width: 519px;
-  height: 597px;
+  height: 741px;
   background: #ffffff;
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
 
