@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // components
 import Label from "@/components/label";
 import Button from "@/components/button";
@@ -17,6 +17,7 @@ import {
 } from "./sign-in.styled";
 
 const LoginPage: React.FC = () => {
+  let navigator = useNavigate();
   const [eye, setEye] = useState(false);
 
   return (
@@ -25,7 +26,7 @@ const LoginPage: React.FC = () => {
         <UserImage />
         <div>
           <Label fontSize={30} fontWeight={700} lineHeight={36}>
-            <b>Login to your account</b>
+            Login to your account
           </Label>
         </div>
         <FormItem>
@@ -103,6 +104,7 @@ const LoginPage: React.FC = () => {
           Background={"#007df8"}
           BoxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
           BorderRadius={10}
+          onClick={() => navigator("/admin")}
         >
           <Label fontSize={22} lineHeight={27} fontColor={"white"}>
             Login now

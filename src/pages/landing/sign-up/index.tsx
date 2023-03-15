@@ -26,7 +26,7 @@ const RegisterPage: React.FC = () => {
         <UserImage />
         <div>
           <Label fontSize={30} fontWeight={700} lineHeight={36}>
-            <b>Create an account</b>
+            Create an account
           </Label>
         </div>
         <FormItem>
