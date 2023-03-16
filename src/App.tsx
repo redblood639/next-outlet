@@ -5,7 +5,8 @@ import LandingPage from "./pages/landing";
 import LoginPage from "@/pages/landing/sign-in";
 import RegisterPage from "@/pages/landing/sign-up";
 import ResetPage from "@/pages/landing/reset";
-import AdminPage from "./pages/admin";
+import AdminPage from "@/pages/admin";
+import DashBoardPage from "@/pages/admin/dashboard";
 // handle router error
 import ErrorPage from "@/pages/error";
 
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "dashboard",
-        element: <div>This is Dashboard</div>,
+        element: <DashBoardPage />,
       },
       {
         path: "accounts",
