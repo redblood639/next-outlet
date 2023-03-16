@@ -5,8 +5,11 @@ import LandingPage from "./pages/landing";
 import LoginPage from "@/pages/landing/sign-in";
 import RegisterPage from "@/pages/landing/sign-up";
 import ResetPage from "@/pages/landing/reset";
+// admin pages
 import AdminPage from "@/pages/admin";
 import DashBoardPage from "@/pages/admin/dashboard";
+import AccountPage from "@/pages/admin/accounts";
+import DevicePage from "@/pages/admin/devices";
 // handle router error
 import ErrorPage from "@/pages/error";
 
@@ -41,11 +44,11 @@ const router = createBrowserRouter([
       },
       {
         path: "accounts",
-        element: <div>This is Accouts</div>,
+        element: <AccountPage />,
       },
       {
         path: "devices",
-        element: <div>This is Device</div>,
+        element: <DevicePage />,
       },
     ],
   },

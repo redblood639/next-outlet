@@ -40,13 +40,14 @@ const LoginPage: React.FC = () => {
             Email
           </Label>
           <Input
-            Type="text"
-            Width={"100%"}
-            Height={55}
-            BorderColor={"#C7BFBF"}
-            HoverColor={"#007DF8"}
-            BorderRadius={10}
-            Icon={<MailIcon />}
+            type="text"
+            width={"100%"}
+            height={55}
+            borderColor={"#C7BFBF"}
+            hoverColor={"#007DF8"}
+            borderRadius={10}
+            placeholder="please input your e-mail"
+            icon={<MailIcon />}
           />
         </FormItem>
         <FormItem>
@@ -79,13 +80,14 @@ const LoginPage: React.FC = () => {
             </Link>
           </div>
           <Input
-            Type={eye ? "text" : "password"}
-            Width={"100%"}
-            Height={55}
-            BorderColor={"#C7BFBF"}
-            HoverColor={"#007DF8"}
-            BorderRadius={10}
-            Icon={
+            type={eye ? "text" : "password"}
+            width={"100%"}
+            height={55}
+            borderColor={"#C7BFBF"}
+            hoverColor={"#007DF8"}
+            borderRadius={10}
+            placeholder="please input your password"
+            icon={
               eye ? (
                 <div onClick={() => setEye(false)}>
                   <EyeOffIcon />
@@ -99,11 +101,11 @@ const LoginPage: React.FC = () => {
           />
         </FormItem>
         <Button
-          Width={"100%"}
-          Height={55}
-          Background={"#007df8"}
-          BoxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
-          BorderRadius={10}
+          width={"100%"}
+          height={55}
+          background={"#007df8"}
+          boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+          borderRadius={10}
           onClick={() => navigator("/admin")}
         >
           <Label fontSize={22} lineHeight={27} fontColor={"white"}>
