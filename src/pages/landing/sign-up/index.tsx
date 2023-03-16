@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 // components
 import Label from "@/components/label";
 import Button from "@/components/button";
@@ -26,7 +26,7 @@ const RegisterPage: React.FC = () => {
         <UserImage />
         <div>
           <Label fontSize={30} fontWeight={700} lineHeight={36}>
-            <b>Create an account</b>
+            Create an account
           </Label>
         </div>
         <FormItem>

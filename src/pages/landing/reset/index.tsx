@@ -21,7 +21,7 @@ const ResetPage: React.FC = () => {
         <UserImage />
         <div>
           <Label fontSize={30} fontWeight={700} lineHeight={36}>
-            <b>Reset the password</b>
+            Reset the password
           </Label>
         </div>
         <FormItem>
