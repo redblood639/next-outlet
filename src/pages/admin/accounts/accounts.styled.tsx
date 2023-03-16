@@ -37,3 +37,31 @@ export const DetailContent = styled.div`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 `;
+
+export const MenuItem = styled.div`
+  width: 379px;
+  height: 71px;
+
+  background: #1f2737;
+  border-radius: 5px;
+
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0 0 0 100px;
+
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background: #2e384b;
+  }
+`;
+
+export const MenuContent = styled.div`
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+`;

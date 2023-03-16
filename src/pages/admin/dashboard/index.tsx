@@ -44,6 +44,7 @@ export const DashboardPage: React.FC = () => {
       <MenuWrapper>
         {menudata.map((element: MenuItemType) => (
           <MenuItemNode
+            key={`menudata-${element.index}`}
             {...element}
             selected={selected}
             setSelected={setSelected}
