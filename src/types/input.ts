@@ -1,11 +1,15 @@
 export interface InputType {
-  Width?: string;
-  Height?: number;
-  BorderColor?: string;
-  HoverColor?: string;
-  BorderRadius?: number;
-  Background?: string;
-  Type?: string;
+  width?: string;
+  height?: number;
+  fontColor?: string;
+  borderColor?: string;
+  hoverColor?: string;
 
-  Icon?: React.ReactNode;
+  placeholder?: string;
+
+  borderRadius?: number;
+  background?: string;
+  type?: string;
+
+  icon?: React.ReactNode;
 }

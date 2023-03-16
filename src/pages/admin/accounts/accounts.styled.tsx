@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DashBoardWrapper = styled.div`
+export const AccountWrapper = styled.div`
   height: calc(100vh - 100px);
   display: flex;
 `;
@@ -13,31 +13,12 @@ export const MenuWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   gap: 15px;
 
   box-sizing: border-box;
-  padding: 30px 0;
-`;
-
-export const MenuItem = styled.div`
-  width: 379px;
-  height: 71px;
-
-  background: #1f2737;
-  border-radius: 5px;
-
-  cursor: pointer;
-  box-sizing: border-box;
-  padding: 0 0 0 50px;
-
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    background: #2e384b;
-  }
+  padding: 30px 10px;
 `;
 
 export const DetailWrapper = styled.div`
@@ -55,4 +36,32 @@ export const DetailContent = styled.div`
   background: white;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+`;
+
+export const MenuItem = styled.div`
+  width: 379px;
+  height: 71px;
+
+  background: #1f2737;
+  border-radius: 5px;
+
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0 0 0 100px;
+
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background: #2e384b;
+  }
+`;
+
+export const MenuContent = styled.div`
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
 `;

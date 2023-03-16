@@ -31,7 +31,7 @@ const AdminPage: React.FC = () => {
     if (location.pathname === "/admin") {
       navigate("/admin/dashboard");
     }
-  }, [location]);
+  }, [location, navigate]);
 
   return (
     <AdminWrapper>

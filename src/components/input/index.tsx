@@ -8,11 +8,11 @@ import {
 // types
 import { InputType } from "@/types/input";
 
-const Input: React.FC<InputType> = ({ Icon, Type, ...props }) => {
+const Input: React.FC<InputType> = ({ icon, type, ...props }) => {
   return (
     <InputWrapper {...props}>
-      <InputArea type={Type} />
-      <InputIcon>{Icon}</InputIcon>
+      <InputArea type={type} {...props} placeholder={props.placeholder} />
+      <InputIcon>{icon}</InputIcon>
     </InputWrapper>
   );
 };

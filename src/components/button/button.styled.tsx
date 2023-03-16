@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { ButtonType } from "@/types/button";
 
 export const ButtonWrapper = styled.button<ButtonType>`
-  width: ${(props) => `${props.Width}` || `1rem`};
-  height: ${(props) => `${props.Height}px` || `1rem`};
+  width: ${(props) => `${props.width}` || `1rem`};
+  height: ${(props) => `${props.height}px` || `1rem`};
 
-  background: ${(props) => props.Background || `white`};
-  box-shadow: ${(props) => props.BoxShadow || `none`};
+  background: ${(props) => props.background || `white`};
+  box-shadow: ${(props) => props.boxShadow || `none`};
 
-  border: ${(props) => props.Border || `none`};
-  border-radius: ${(props) => `${props.BorderRadius}px` || `unset`};
+  border: ${(props) => props.border || `none`};
+  border-radius: ${(props) => `${props.borderRadius}px` || `unset`};
 
   /* pointer */
   cursor: pointer;

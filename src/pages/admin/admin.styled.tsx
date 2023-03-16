@@ -51,6 +51,7 @@ export const ModalWrapper = styled.div<{ modalMenu: boolean }>`
   background-color: rgba(0, 0, 0, 0.2);
 
   display: ${({ modalMenu }) => (modalMenu ? "block" : "none")};
+  z-index: 2;
 `;
 
 export const ModalMenu = styled.div`
