@@ -54,7 +54,9 @@ const AdminPage: React.FC = () => {
                 fontSize={30}
                 lineHeight={36}
                 fontColor={
-                  location.pathname === "/admin/dashboard" ? "#F24E1E" : "black"
+                  location.pathname.includes("/admin/dashboard")
+                    ? "#F24E1E"
+                    : "black"
                 }
               >
                 Dashboard
@@ -69,7 +71,9 @@ const AdminPage: React.FC = () => {
                 fontSize={30}
                 lineHeight={36}
                 fontColor={
-                  location.pathname === "/admin/accounts" ? "#699BF7" : "black"
+                  location.pathname.includes("/admin/accounts")
+                    ? "#699BF7"
+                    : "black"
                 }
               >
                 Account Management
@@ -84,7 +88,9 @@ const AdminPage: React.FC = () => {
                 fontSize={30}
                 lineHeight={36}
                 fontColor={
-                  location.pathname === "/admin/devices" ? "#9747FF" : "black"
+                  location.pathname.includes("/admin/devices")
+                    ? "#9747FF"
+                    : "black"
                 }
               >
                 Device Info
