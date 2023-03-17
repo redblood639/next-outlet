@@ -5,13 +5,57 @@ import {
   DetailContent,
   DetailWrapper,
   MenuWrapper,
+  MenuContent,
+  MenuItem,
 } from "@/pages/admin/devices/devices.styled";
 import Input from "@/components/input";
 import SearhIcon from "@/assets/svgs/search";
 import Button from "@/components/button";
 import Label from "@/components/label";
+import {
+  Outlet,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+
+import { getDevices } from "@/assets/test_data";
+
+type MenuItemType = {
+  index: number;
+  label: string;
+  [key: string]: any;
+};
+
+export async function loader() {
+  const accounts = await getDevices();
+  return accounts;
+}
+
+const MenuItemNode: React.FC<MenuItemType> = ({ index, label, ...props }) => {
+  return (
+    <MenuItem onClick={() => props.navigate(`/admin/devices/${index}`)}>
+      <Label
+        fontSize={30}
+        fontWeight={700}
+        lineHeight={36}
+        fontColor={
+          `/admin/devices/${index}` === props.location.pathname
+            ? "#ffffff"
+            : "#B3B6BB"
+        }
+      >
+        {label}
+      </Label>
+    </MenuItem>
+  );
+};
 
 const DevicePage: React.FC = () => {
+  let navigate = useNavigate();
+  let location = useLocation();
+  const accounts: any = useLoaderData();
+
   return (
     <DeviceWrapper>
       <MenuWrapper>
@@ -27,6 +71,16 @@ const DevicePage: React.FC = () => {
           placeholder="Search Items ..."
           icon={<SearhIcon />}
         />
+        <MenuContent>
+          {accounts.map((element: MenuItemType) => (
+            <MenuItemNode
+              key={`devices-${element.index}`}
+              {...element}
+              location={location}
+              navigate={navigate}
+            />
+          ))}
+        </MenuContent>
         <Button
           width={"100%"}
           height={55}
@@ -40,7 +94,9 @@ const DevicePage: React.FC = () => {
         </Button>
       </MenuWrapper>
       <DetailWrapper>
-        <DetailContent>{/* Content */}</DetailContent>
+        <DetailContent>
+          <Outlet />
+        </DetailContent>
       </DetailWrapper>
     </DeviceWrapper>
   );

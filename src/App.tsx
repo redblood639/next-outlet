@@ -11,10 +11,12 @@ import DashBoardPage from "@/pages/admin/dashboard";
 
 import AccountPage, { loader as accountLoader } from "@/pages/admin/accounts";
 import DetailAccountSection, {
-  loader as detailLoader,
+  loader as detailAccountLoader,
 } from "@/pages/admin/accounts/details";
-
-import DevicePage from "@/pages/admin/devices";
+import DevicePage, { loader as deviceLoader } from "@/pages/admin/devices";
+import DetailDeviceSection, {
+  loader as detailDeviceLoader,
+} from "@/pages/admin/devices/details";
 // handle router error
 import ErrorPage from "@/pages/error";
 
@@ -56,13 +58,22 @@ const router = createBrowserRouter([
             path: ":id",
             errorElement: <ErrorPage />,
             element: <DetailAccountSection />,
-            loader: detailLoader,
+            loader: detailAccountLoader,
           },
         ],
       },
       {
         path: "devices",
         element: <DevicePage />,
+        loader: deviceLoader,
+        children: [
+          {
+            path: ":id",
+            errorElement: <ErrorPage />,
+            element: <DetailDeviceSection />,
+            loader: detailDeviceLoader,
+          },
+        ],
       },
     ],
   },

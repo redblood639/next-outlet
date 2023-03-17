@@ -54,14 +54,16 @@ const AdminPage: React.FC = () => {
                 fontSize={30}
                 lineHeight={36}
                 fontColor={
-                  location.pathname === "/admin/dashboard" ? "#F24E1E" : "black"
+                  location.pathname.includes("/admin/dashboard")
+                    ? "#F24E1E"
+                    : "black"
                 }
               >
                 Dashboard
               </Label>
             </MenuItem>
           </Link>
-          <Link to={"/admin/accounts"} style={{ textDecoration: "none" }}>
+          <Link to={"/admin/accounts/1"} style={{ textDecoration: "none" }}>
             <MenuItem>
               <AccountIcon />
               <Label
@@ -69,14 +71,16 @@ const AdminPage: React.FC = () => {
                 fontSize={30}
                 lineHeight={36}
                 fontColor={
-                  location.pathname === "/admin/accounts" ? "#699BF7" : "black"
+                  location.pathname.includes("/admin/accounts")
+                    ? "#699BF7"
+                    : "black"
                 }
               >
                 Account Management
               </Label>
             </MenuItem>
           </Link>
-          <Link to={"/admin/devices"} style={{ textDecoration: "none" }}>
+          <Link to={"/admin/devices/1"} style={{ textDecoration: "none" }}>
             <MenuItem>
               <DeviceInfoIcon />
               <Label
@@ -84,7 +88,9 @@ const AdminPage: React.FC = () => {
                 fontSize={30}
                 lineHeight={36}
                 fontColor={
-                  location.pathname === "/admin/devices" ? "#9747FF" : "black"
+                  location.pathname.includes("/admin/devices")
+                    ? "#9747FF"
+                    : "black"
                 }
               >
                 Device Info

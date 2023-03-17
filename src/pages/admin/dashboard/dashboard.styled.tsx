@@ -19,10 +19,14 @@ export const MenuWrapper = styled.div`
 
   box-sizing: border-box;
   padding: 30px 0;
+
+  @media screen and (max-width: 1440px) {
+    width: 300px;
+  }
 `;
 
 export const MenuItem = styled.div`
-  width: 379px;
+  width: 90%;
   height: 71px;
 
   background: #1f2737;
@@ -49,8 +53,8 @@ export const DetailWrapper = styled.div`
 `;
 
 export const DetailContent = styled.div`
-  width: 1359px;
-  height: 811px;
+  width: 90%;
+  height: 90%;
 
   background: white;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);

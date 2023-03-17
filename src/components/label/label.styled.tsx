@@ -9,4 +9,8 @@ export const LabelWrapper = styled.span<LabelType>`
   padding: ${(props) => props.padding || `0`};
 
   display: ${(props) => props.display || `inline`};
+
+  @media screen and (max-width: 1440px) {
+    font-size: calc(${(props) => props.fontSize}px * 0.7);
+  }
 `;

@@ -18,4 +18,9 @@ export const ButtonWrapper = styled.button<ButtonType>`
   &:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
   }
+
+  @media screen and (max-width: 1440px) {
+    width: calc(${(props) => props.width}px * 0.7);
+    height: calc(${(props) => props.height}px * 0.7);
+  }
 `;
