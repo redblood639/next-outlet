@@ -5,7 +5,7 @@ import {
   DetailWrapper,
   ContentFooter,
   MainContent,
-} from "@/pages/admin/accounts/details/details.styled";
+} from "@/pages/admin/devices/details/details.styled";
 import Button from "@/components/button";
 import Label from "@/components/label";
 
@@ -56,7 +56,7 @@ const DetailAccountSection: React.FC = () => {
             </tr>
             <tr>
               <td>{"Owner"}</td>
-              <td>: Haoming</td>
+              <td>: James</td>
             </tr>
             <tr>
               <td>{"Charge"}</td>

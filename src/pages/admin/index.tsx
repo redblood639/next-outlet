@@ -63,7 +63,7 @@ const AdminPage: React.FC = () => {
               </Label>
             </MenuItem>
           </Link>
-          <Link to={"/admin/accounts"} style={{ textDecoration: "none" }}>
+          <Link to={"/admin/accounts/1"} style={{ textDecoration: "none" }}>
             <MenuItem>
               <AccountIcon />
               <Label
@@ -80,7 +80,7 @@ const AdminPage: React.FC = () => {
               </Label>
             </MenuItem>
           </Link>
-          <Link to={"/admin/devices"} style={{ textDecoration: "none" }}>
+          <Link to={"/admin/devices/1"} style={{ textDecoration: "none" }}>
             <MenuItem>
               <DeviceInfoIcon />
               <Label
