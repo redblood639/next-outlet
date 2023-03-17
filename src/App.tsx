@@ -20,6 +20,9 @@ import DetailDeviceSection, {
 // handle router error
 import ErrorPage from "@/pages/error";
 
+// Protected Router
+import ProtectedRoute from "./routes/protectedroute";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,7 +45,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminPage />,
+    element: (
+      <ProtectedRoute user={null}>
+        <AdminPage />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
