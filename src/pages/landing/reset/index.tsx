@@ -124,7 +124,7 @@ const ResetPage: React.FC = () => {
         <div>
           <Label fontSize={20} lineHeight={24} fontColor={"#7B7777"}>
             Already have an account ?{" "}
-            <Link to={"/login"} style={{ textDecoration: "none" }}>
+            <Link to={"/"} style={{ textDecoration: "none" }}>
               <Label fontColor={"#007DF8"}>Sign In</Label>
             </Link>
           </Label>
