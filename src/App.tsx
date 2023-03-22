@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import { Provider } from "react-redux/es/exports";
+import store from "@/store/store";
 // import pages
 import LandingPage from "./pages/landing";
 import LoginPage from "@/pages/landing/sign-in";
@@ -8,7 +10,6 @@ import ResetPage from "@/pages/landing/reset";
 // admin pages
 import AdminPage from "@/pages/admin";
 import DashBoardPage from "@/pages/admin/dashboard";
-
 import AccountPage, { loader as accountLoader } from "@/pages/admin/accounts";
 import DetailAccountSection, {
   loader as detailAccountLoader,
@@ -19,9 +20,8 @@ import DetailDeviceSection, {
 } from "@/pages/admin/devices/details";
 // handle router error
 import ErrorPage from "@/pages/error";
-
 // Protected Router
-import ProtectedRoute from "./routes/protectedroute";
+import PrivateRoute from "./components/privateRoute";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "login",
+        index: true,
         element: <LoginPage />,
       },
       {
@@ -46,9 +46,9 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <ProtectedRoute user={null}>
+      <PrivateRoute>
         <AdminPage />
-      </ProtectedRoute>
+      </PrivateRoute>
     ),
     errorElement: <ErrorPage />,
     children: [
@@ -87,7 +87,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 }
 
 export default App;

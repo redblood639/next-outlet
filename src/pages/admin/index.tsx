@@ -118,7 +118,7 @@ const AdminPage: React.FC = () => {
             </div>
           </ModalContent>
           <ModalFooter>
-            <Link to={"/login"} style={{ textDecoration: "none" }}>
+            <Link to={"/"} style={{ textDecoration: "none" }}>
               <div>
                 <LogoutIcon />
                 <Label
