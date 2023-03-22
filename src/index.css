@@ -13,3 +13,8 @@ code {
 }
 
 
+
+.auth-error {
+  font-size: 14px;
+  color: #fd0202;
+}

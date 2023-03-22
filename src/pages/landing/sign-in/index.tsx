@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
+import * as Yup from "yup";
 // components
 import Label from "@/components/label";
 import Button from "@/components/button";
@@ -15,10 +17,38 @@ import {
   FormItem,
   UserImage,
 } from "./sign-in.styled";
+// types
+import { loginType } from "@/types/auth";
 
 const LoginPage: React.FC = () => {
   let navigator = useNavigate();
   const [eye, setEye] = useState(false);
+  const [initialValue, setInitialValue] = useState<loginType>({
+    email: "",
+    password: "",
+  });
+
+  //  validate Schema
+  const validationSchema = () => {
+    return Yup.object().shape({
+      email: Yup.string()
+        .email("This is not valid email.")
+        .required("This field is required"),
+      password: Yup.string()
+        .test(
+          "len",
+          "The password must be between 6 and 40 characters.",
+          (val: any) =>
+            val && val.toString().length >= 6 && val.toString().length <= 40
+        )
+        .required("This field is required!"),
+    });
+  };
+
+  const handleRegister = (formValue: loginType) => {
+    alert("we are working now.");
+    console.log(formValue);
+  };
 
   return (
     <LoginPageWrapper>
@@ -29,89 +59,131 @@ const LoginPage: React.FC = () => {
             Login to your account
           </Label>
         </div>
-        <FormItem>
-          <Label
-            fontSize={20}
-            lineHeight={24}
-            fontColor={"#7B7777"}
-            display={"block"}
-            padding={"0 0 10px 0"}
-          >
-            Email
-          </Label>
-          <Input
-            type="text"
-            width={"100%"}
-            height={55}
-            borderColor={"#C7BFBF"}
-            hoverColor={"#007DF8"}
-            borderRadius={10}
-            placeholder="please input your e-mail"
-            icon={<MailIcon />}
-          />
-        </FormItem>
-        <FormItem>
-          <div
+        <Formik
+          initialValues={initialValue}
+          validationSchema={validationSchema}
+          onSubmit={handleRegister}
+        >
+          <Form
             style={{
+              width: "100%",
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              flexDirection: "column",
+              gap: "20px",
             }}
           >
-            <Label
-              fontSize={20}
-              lineHeight={24}
-              fontColor={"#7B7777"}
-              display={"block"}
-              padding={"0 0 10px 0"}
-            >
-              Password
-            </Label>
-            <Link to={"/reset"} style={{ textDecoration: "none" }}>
+            <FormItem>
               <Label
                 fontSize={20}
                 lineHeight={24}
-                fontColor={"#007df8"}
+                fontColor={"#7B7777"}
                 display={"block"}
                 padding={"0 0 10px 0"}
               >
-                Forgot ?
+                Email
               </Label>
-            </Link>
-          </div>
-          <Input
-            type={eye ? "text" : "password"}
-            width={"100%"}
-            height={55}
-            borderColor={"#C7BFBF"}
-            hoverColor={"#007DF8"}
-            borderRadius={10}
-            placeholder="please input your password"
-            icon={
-              eye ? (
-                <div onClick={() => setEye(false)}>
-                  <EyeOffIcon />
-                </div>
-              ) : (
-                <div onClick={() => setEye(true)}>
-                  <EyeIcon />
-                </div>
-              )
-            }
-          />
-        </FormItem>
-        <Button
-          width={"100%"}
-          height={55}
-          background={"#007df8"}
-          boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
-          borderRadius={10}
-          onClick={() => navigator("/admin")}
-        >
-          <Label fontSize={22} lineHeight={27} fontColor={"white"}>
-            Login now
-          </Label>
-        </Button>
+              <Field name="email">
+                {({
+                  field, // { name, value, onChange, onBlur }
+                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                  meta,
+                }: any) => (
+                  <div>
+                    <Input
+                      type="text"
+                      width={"100%"}
+                      height={55}
+                      borderColor={"#C7BFBF"}
+                      hoverColor={"#007DF8"}
+                      borderRadius={10}
+                      placeholder="please input your e-mail"
+                      icon={<MailIcon />}
+                    />
+                    {meta.touched && meta.error && (
+                      <div className="auth-error">{meta.error}</div>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </FormItem>
+            <FormItem>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Label
+                  fontSize={20}
+                  lineHeight={24}
+                  fontColor={"#7B7777"}
+                  display={"block"}
+                  padding={"0 0 10px 0"}
+                >
+                  Password
+                </Label>
+                <Link to={"/reset"} style={{ textDecoration: "none" }}>
+                  <Label
+                    fontSize={20}
+                    lineHeight={24}
+                    fontColor={"#007df8"}
+                    display={"block"}
+                    padding={"0 0 10px 0"}
+                  >
+                    Forgot ?
+                  </Label>
+                </Link>
+              </div>
+
+              <Field name="password">
+                {({
+                  field, // { name, value, onChange, onBlur }
+                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                  meta,
+                }: any) => (
+                  <div>
+                    <Input
+                      type={eye ? "text" : "password"}
+                      width={"100%"}
+                      height={55}
+                      borderColor={"#C7BFBF"}
+                      hoverColor={"#007DF8"}
+                      borderRadius={10}
+                      placeholder="please input your password"
+                      icon={
+                        eye ? (
+                          <div onClick={() => setEye(false)}>
+                            <EyeOffIcon />
+                          </div>
+                        ) : (
+                          <div onClick={() => setEye(true)}>
+                            <EyeIcon />
+                          </div>
+                        )
+                      }
+                    />
+                    {meta.touched && meta.error && (
+                      <div className="auth-error">{meta.error}</div>
+                    )}
+                  </div>
+                )}
+              </Field>
+            </FormItem>
+            <Button
+              width={"100%"}
+              height={55}
+              background={"#007df8"}
+              boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+              borderRadius={10}
+              typeof="submit"
+            >
+              <Label fontSize={22} lineHeight={27} fontColor={"white"}>
+                Login now
+              </Label>
+            </Button>
+          </Form>
+        </Formik>
         <div>
           <Label fontSize={20} lineHeight={24} fontColor={"#7B7777"}>
             Don't you have an account ?{" "}
