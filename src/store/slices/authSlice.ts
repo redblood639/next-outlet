@@ -14,23 +14,23 @@ const initialState: AuthState = {
   isProcessingRequest: false,
 };
 
-export const authenticationSlice = createSlice({
-  name: "auth",
+const authenticationSlice = createSlice({
+  name: "authentication",
   initialState,
   reducers: {
-    start: (state) => {
+    start: (state: AuthState) => {
       return {
         ...state,
         isProcessingRequest: true,
       };
     },
-    success: (state, action: PayloadAction<any>) => {
+    success: (state: AuthState, action: PayloadAction<any>) => {
       return {
         ...state,
         isProcessingRequest: false,
       };
     },
-    error: (state, action: PayloadAction<any>) => {
+    error: (state: AuthState, action: PayloadAction<any>) => {
       return {
         ...state,
         isProcessingRequest: false,
@@ -44,7 +44,6 @@ export const authenticateUser = (userData: any) => async (dispatch: any) => {
     const authData = await authenticate(userData);
     setTokens(authData.data);
     dispatch(success(authData.data));
-    //
     console.log("success");
   } catch (err) {
     dispatch(error(err));

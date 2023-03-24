@@ -19,8 +19,12 @@ import {
 } from "./sign-up.styled";
 // types
 import { registerType } from "@/types/auth";
+// redux
+import { useAppDispatch } from "@/store/hooks";
+import { RegisterUser } from "@/store/slices/registerSlice";
 
 const RegisterPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [eye1, setEye1] = useState<boolean>(false);
   const [eye2, setEye2] = useState<boolean>(false);
   const [initialValue, setInitialValue] = useState<registerType>({
@@ -52,8 +56,7 @@ const RegisterPage: React.FC = () => {
   };
 
   const handleRegister = (formValue: registerType) => {
-    alert("we are working now.");
-    console.log(formValue);
+    dispatch(RegisterUser(formValue));
   };
 
   return (
@@ -186,6 +189,7 @@ const RegisterPage: React.FC = () => {
                       hoverColor={"#007DF8"}
                       borderRadius={10}
                       placeholder="please confirm your password"
+                      {...field}
                       icon={
                         eye2 ? (
                           <div onClick={() => setEye2(false)}>

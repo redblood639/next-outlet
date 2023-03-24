@@ -1,17 +1,17 @@
 const env = {
   development: {
-    BASE_URL: "https://jsonplaceholder.typicode.com/",
-    USER_NAME: "j.krrishchandran@gmail.com",
+    BASE_URL: "http://localhost:8080/api",
+    USER_NAME: "shadowmaster0419@gmail.com",
     PASSWORD: "samplereact",
   },
   production: {
-    BASE_URL: "https://jsonplaceholder.typicode.com/",
-    USER_NAME: "j.krrishchandran@gmail.com",
+    BASE_URL: "https://www.example.com/",
+    USER_NAME: "shadowmaster0419@gmail.com",
     PASSWORD: "samplereact",
   },
   test: {
-    BASE_URL: "https://jsonplaceholder.typicode.com/",
-    USER_NAME: "j.krrishchandran@gmail.com",
+    BASE_URL: "https://www.example.com/",
+    USER_NAME: "shadowmaster0419@gmail.com",
     PASSWORD: "samplereact",
   },
 };
