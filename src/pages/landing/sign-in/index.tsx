@@ -19,9 +19,12 @@ import {
 } from "./sign-in.styled";
 // types
 import { loginType } from "@/types/auth";
+import { useAppDispatch } from "@/store/hooks";
+import { authenticateUser } from "@/store/slices/authSlice";
 
 const LoginPage: React.FC = () => {
   let navigator = useNavigate();
+  const dispatch = useAppDispatch();
   const [eye, setEye] = useState(false);
   const [initialValue, setInitialValue] = useState<loginType>({
     email: "",
@@ -46,8 +49,7 @@ const LoginPage: React.FC = () => {
   };
 
   const handleRegister = (formValue: loginType) => {
-    alert("we are working now.");
-    console.log(formValue);
+    dispatch(authenticateUser(formValue));
   };
 
   return (
@@ -98,6 +100,7 @@ const LoginPage: React.FC = () => {
                       borderRadius={10}
                       placeholder="please input your e-mail"
                       icon={<MailIcon />}
+                      {...field}
                     />
                     {meta.touched && meta.error && (
                       <div className="auth-error">{meta.error}</div>
@@ -162,6 +165,7 @@ const LoginPage: React.FC = () => {
                           </div>
                         )
                       }
+                      {...field}
                     />
                     {meta.touched && meta.error && (
                       <div className="auth-error">{meta.error}</div>

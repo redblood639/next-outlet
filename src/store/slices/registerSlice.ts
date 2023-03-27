@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 import { registerAccount } from "@/services/registerService";
 import { registerType } from "@/types/auth";
-import { factory } from "typescript";
 
 interface RegisterState {
   isProcessingRequest: boolean;

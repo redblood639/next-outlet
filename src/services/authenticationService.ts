@@ -1,5 +1,6 @@
 import { getAccessToken } from "./localStorage";
 import { env_var } from "@/config/env";
+import axios from "axios";
 
 export interface AuthPayload {
   username: string;
@@ -7,19 +8,16 @@ export interface AuthPayload {
 }
 
 export const authenticate = async (data: AuthPayload) => {
-  if (
-    data.username === env_var.USER_NAME &&
-    data.password === env_var.PASSWORD
-  ) {
+  try {
+    const result: any = await axios.post(env_var.BASE_URL + "/token", data);
     return {
       status: true,
       data: {
-        user: env_var.USER_NAME,
-        token: env_var.USER_NAME,
-        refreshToken: env_var.USER_NAME,
+        user: result.data.user,
+        token: result.data.token,
       },
     };
-  } else {
+  } catch {
     return { status: false, data: "Something went wrong" };
   }
 };

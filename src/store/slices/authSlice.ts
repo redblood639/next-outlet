@@ -12,6 +12,7 @@ interface AuthState {
 // Define the initial state using that type
 const initialState: AuthState = {
   isProcessingRequest: false,
+  accessToken: "",
 };
 
 const authenticationSlice = createSlice({
@@ -22,18 +23,21 @@ const authenticationSlice = createSlice({
       return {
         ...state,
         isProcessingRequest: true,
+        accessToken: "",
       };
     },
     success: (state: AuthState, action: PayloadAction<any>) => {
       return {
         ...state,
         isProcessingRequest: false,
+        accessToken: action.payload.token,
       };
     },
     error: (state: AuthState, action: PayloadAction<any>) => {
       return {
         ...state,
         isProcessingRequest: false,
+        accessToken: "",
       };
     },
   },
@@ -42,9 +46,13 @@ const authenticationSlice = createSlice({
 export const authenticateUser = (userData: any) => async (dispatch: any) => {
   try {
     const authData = await authenticate(userData);
-    setTokens(authData.data);
-    dispatch(success(authData.data));
-    console.log("success");
+    if (authData.status) {
+      console.log("success");
+      setTokens(authData.data);
+      dispatch(success(authData.data));
+    } else {
+      throw new Error("failed");
+    }
   } catch (err) {
     dispatch(error(err));
   }
