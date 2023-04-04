@@ -3,8 +3,8 @@ import React from "react";
 const LogoutIcon: React.FC = () => {
   return (
     <svg
-      width="30"
-      height="30"
+      width="18"
+      height="18"
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

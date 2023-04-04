@@ -1,33 +1,39 @@
-import React, { useState } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 // components
 import Label from "@/components/label";
 // styled components
 import {
   AdminWrapper,
+  UserInfoWrapper,
   MenuContent,
-  MenuItems,
-  MenuItem,
-  UserAvatar,
   ModalWrapper,
   ModalMenu,
-  ModalHeader,
-  ModalFooter,
-  ModalContent,
+  MenuItem,
 } from "@/pages/admin/admin.styled";
 // Icons
-import DashBoardIcon from "@/assets/svgs/dashboard";
-import AccountIcon from "@/assets/svgs/accounts";
-import DeviceInfoIcon from "@/assets/svgs/deviceinfo";
 import LogoutIcon from "@/assets/svgs/logout";
-import RightArrowIcon from "@/assets/svgs/right-arrow";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { signOutUser, loadUser } from "@/store/slices/authSlice";
 
 const AdminPage: React.FC = () => {
   let location = useLocation();
   let navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.authentication);
+
   const [modalMenu, setModalMenu] = useState<boolean>(false);
 
-  React.useEffect(() => {
+  const handleSignOut = () => {
+    dispatch(signOutUser());
+    navigate("/");
+  };
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
+
+  useEffect(() => {
     if (location.pathname === "/admin") {
       navigate("/admin/dashboard");
     }
@@ -41,97 +47,30 @@ const AdminPage: React.FC = () => {
           fontSize={30}
           lineHeight={36}
           display="block"
-          padding="0 0 0 85px"
+          padding="0 35px"
         >
-          Admin Panel
+          LOGO
         </Label>
-        <MenuItems>
-          <Link to={"/admin/dashboard"} style={{ textDecoration: "none" }}>
-            <MenuItem>
-              <DashBoardIcon />
-              <Label
-                fontWeight={700}
-                fontSize={30}
-                lineHeight={36}
-                fontColor={
-                  location.pathname.includes("/admin/dashboard")
-                    ? "#F24E1E"
-                    : "black"
-                }
-              >
-                Dashboard
-              </Label>
-            </MenuItem>
-          </Link>
-          <Link to={"/admin/accounts/1"} style={{ textDecoration: "none" }}>
-            <MenuItem>
-              <AccountIcon />
-              <Label
-                fontWeight={700}
-                fontSize={30}
-                lineHeight={36}
-                fontColor={
-                  location.pathname.includes("/admin/accounts")
-                    ? "#699BF7"
-                    : "black"
-                }
-              >
-                Account Management
-              </Label>
-            </MenuItem>
-          </Link>
-          <Link to={"/admin/devices/1"} style={{ textDecoration: "none" }}>
-            <MenuItem>
-              <DeviceInfoIcon />
-              <Label
-                fontWeight={700}
-                fontSize={30}
-                lineHeight={36}
-                fontColor={
-                  location.pathname.includes("/admin/devices")
-                    ? "#9747FF"
-                    : "black"
-                }
-              >
-                Device Info
-              </Label>
-            </MenuItem>
-          </Link>
-        </MenuItems>
-        <UserAvatar onClick={() => setModalMenu(true)} />
+
+        <UserInfoWrapper onClick={() => setModalMenu(true)}>
+          {user}
+        </UserInfoWrapper>
       </MenuContent>
+
       {/* modal */}
       <ModalWrapper modalMenu={modalMenu} onClick={() => setModalMenu(false)}>
         <ModalMenu>
-          <ModalHeader>
-            <UserAvatar />
-            <Label fontSize={20} lineHeight={24}>
-              example@gmail.com
+          <MenuItem onClick={handleSignOut}>
+            <LogoutIcon />
+            <Label
+              fontColor={"#007DF8"}
+              fontWeight={600}
+              fontSize={18}
+              lineHeight={26}
+            >
+              Sign Out
             </Label>
-          </ModalHeader>
-          <ModalContent>
-            <div>
-              <Label fontSize={20} lineHeight={24}>
-                Profile Setting
-              </Label>
-              <RightArrowIcon />
-            </div>
-          </ModalContent>
-          <ModalFooter>
-            <Link to={"/"} style={{ textDecoration: "none" }}>
-              <div>
-                <LogoutIcon />
-                <Label
-                  fontColor={"#007DF8"}
-                  fontWeight={600}
-                  fontSize={25}
-                  lineHeight={26}
-                >
-                  Sign Out
-                </Label>
-              </div>
-            </Link>
-          </ModalFooter>
+          </MenuItem>
         </ModalMenu>
       </ModalWrapper>
 

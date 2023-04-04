@@ -5,6 +5,7 @@ export interface LabelType {
   lineHeight?: number;
   display?: string;
   padding?: string;
+  letterSpacing?: number;
 
   children?: React.ReactNode;
 }

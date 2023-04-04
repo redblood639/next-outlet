@@ -13,15 +13,63 @@ import EyeOffIcon from "@/assets/svgs/eye-off";
 // styled components
 import {
   RegisterWrapper,
-  LoginCard,
+  SignWrapper,
+  SignUpCard,
   FormItem,
-  UserImage,
 } from "./sign-up.styled";
 // types
 import { registerType } from "@/types/auth";
 // redux
 import { useAppDispatch } from "@/store/hooks";
 import { RegisterUser } from "@/store/slices/registerSlice";
+
+const labelStyle = {
+  fontSize: 16,
+  lineHeight: 24,
+  fontColor: "#7B7777",
+  display: "block",
+  padding: "0 0 10px 0",
+};
+
+const inputStyle = {
+  width: "100%",
+  height: 55,
+  borderColor: "#C7BFBF",
+  hoverColor: "#007DF8",
+  borderRadius: 10,
+};
+
+export const Item = ({
+  label,
+  name,
+  placeholder,
+  type = "text",
+  icon,
+}: any) => {
+  /* Email */
+  return (
+    <FormItem>
+      <Label {...labelStyle}>{label}</Label>
+
+      <Field name={name}>
+        {({ field, meta }: any) => (
+          <div>
+            <Input
+              type={type}
+              {...inputStyle}
+              {...field}
+              icon={icon}
+              placeholder={placeholder}
+            />
+            {meta.touched && meta.error && (
+              <div className="auth-error">{meta.error}</div>
+            )}
+          </div>
+        )}
+      </Field>
+    </FormItem>
+  );
+};
 
 const RegisterPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -31,6 +79,16 @@ const RegisterPage: React.FC = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    name: "",
+    reg_number: "",
+    address: "",
+    country: "",
+    pincode: "",
+    director_arr: "",
+    number: "",
+    numbercountrycode: "",
+    paymentMethod: "",
+    margin: "",
   });
 
   //  validate Schema
@@ -52,6 +110,16 @@ const RegisterPage: React.FC = () => {
           return this.parent.password === value;
         })
         .required("This field is required!"),
+      name: Yup.string().required("This field is required"),
+      reg_number: Yup.string().required("This field is required"),
+      address: Yup.string().required("This field is required"),
+      country: Yup.string().required("This field is required"),
+      pincode: Yup.string().required("This field is required"),
+      director_arr: Yup.string().required("This field is required"),
+      number: Yup.string().required("This field is required"),
+      numbercountrycode: Yup.string().required("This field is required"),
+      paymentMethod: Yup.string().required("This field is required"),
+      margin: Yup.string().required("This field is required"),
     });
   };
 
@@ -61,178 +129,128 @@ const RegisterPage: React.FC = () => {
 
   return (
     <RegisterWrapper>
-      <LoginCard>
-        <UserImage />
-        <div>
-          <Label fontSize={30} fontWeight={700} lineHeight={36}>
-            Create an account
-          </Label>
-        </div>
-        <Formik
-          initialValues={initialValue}
-          validationSchema={validationSchema}
-          onSubmit={handleRegister}
-        >
-          <Form
-            style={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-            }}
+      <SignWrapper>
+        <SignUpCard>
+          <div>
+            <Label fontSize={25} fontWeight={700} lineHeight={36}>
+              Create an account
+            </Label>
+          </div>
+          <Formik
+            initialValues={initialValue}
+            validationSchema={validationSchema}
+            onSubmit={handleRegister}
           >
-            <FormItem>
-              <Label
-                fontSize={20}
-                lineHeight={24}
-                fontColor={"#7B7777"}
-                display={"block"}
-                padding={"0 0 10px 0"}
-              >
-                Email
-              </Label>
-
-              <Field name="email">
-                {({
-                  field, // { name, value, onChange, onBlur }
-                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-                  meta,
-                }: any) => (
-                  <div>
-                    <Input
-                      type="text"
-                      width={"100%"}
-                      height={55}
-                      borderColor={"#C7BFBF"}
-                      hoverColor={"#007DF8"}
-                      borderRadius={10}
-                      icon={<MailIcon />}
-                      placeholder="please input your e-mail"
-                      {...field}
-                    />
-                    {meta.touched && meta.error && (
-                      <div className="auth-error">{meta.error}</div>
-                    )}
-                  </div>
-                )}
-              </Field>
-            </FormItem>
-            <FormItem>
-              <Label
-                fontSize={20}
-                lineHeight={24}
-                fontColor={"#7B7777"}
-                display={"block"}
-                padding={"0 0 10px 0"}
-              >
-                Password
-              </Label>
-
-              <Field name="password">
-                {({
-                  field, // { name, value, onChange, onBlur }
-                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-                  meta,
-                }: any) => (
-                  <div>
-                    <Input
-                      type={eye1 ? "text" : "password"}
-                      width={"100%"}
-                      height={55}
-                      borderColor={"#C7BFBF"}
-                      hoverColor={"#007DF8"}
-                      borderRadius={10}
-                      placeholder="please input your password"
-                      {...field}
-                      icon={
-                        eye1 ? (
-                          <div onClick={() => setEye1(false)}>
-                            <EyeOffIcon />
-                          </div>
-                        ) : (
-                          <div onClick={() => setEye1(true)}>
-                            <EyeIcon />
-                          </div>
-                        )
-                      }
-                    />
-                    {meta.touched && meta.error && (
-                      <div className="auth-error">{meta.error}</div>
-                    )}
-                  </div>
-                )}
-              </Field>
-            </FormItem>
-            <FormItem>
-              <Label
-                fontSize={20}
-                lineHeight={24}
-                fontColor={"#7B7777"}
-                display={"block"}
-                padding={"0 0 10px 0"}
-              >
-                Confirm Password
-              </Label>
-
-              <Field name="confirmPassword">
-                {({
-                  field, // { name, value, onChange, onBlur }
-                  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-                  meta,
-                }: any) => (
-                  <div>
-                    <Input
-                      type={eye2 ? "text" : "password"}
-                      width={"100%"}
-                      height={55}
-                      borderColor={"#C7BFBF"}
-                      hoverColor={"#007DF8"}
-                      borderRadius={10}
-                      placeholder="please confirm your password"
-                      {...field}
-                      icon={
-                        eye2 ? (
-                          <div onClick={() => setEye2(false)}>
-                            <EyeOffIcon />
-                          </div>
-                        ) : (
-                          <div onClick={() => setEye2(true)}>
-                            <EyeIcon />
-                          </div>
-                        )
-                      }
-                    />
-                    {meta.touched && meta.error && (
-                      <div className="auth-error">{meta.error}</div>
-                    )}
-                  </div>
-                )}
-              </Field>
-            </FormItem>
-
-            <Button
-              width={"100%"}
-              height={55}
-              background={"#007df8"}
-              boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
-              borderRadius={10}
-              typeof="submit"
+            <Form
+              style={{
+                width: "80%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+              }}
             >
-              <Label fontSize={22} lineHeight={27} fontColor={"white"}>
-                Create account
-              </Label>
-            </Button>
-          </Form>
-        </Formik>
-        <div>
-          <Label fontSize={20} lineHeight={24} fontColor={"#7B7777"}>
-            Already have an account ?{" "}
-            <Link to={"/"} style={{ textDecoration: "none" }}>
-              <Label fontColor={"#007DF8"}>Sign In</Label>
-            </Link>
-          </Label>
-        </div>
-      </LoginCard>
+              <Item label="Name" name="name" placeholder="Hello World" />
+
+              <Item
+                label="Partner Registration Number"
+                name="reg_number"
+                placeholder="0x123"
+              />
+              <Item label="Country" name="country" placeholder="CA" />
+              <Item label="Address" name="address" placeholder="Toronto, CA" />
+              <Item label="Pin Code" name="pincode" placeholder="123456" />
+              <Item
+                label="Director"
+                name="director_arr"
+                placeholder="{'Director#1', 'Director#007', 'Director#101'}"
+              />
+              <Item
+                label="Phonenumber"
+                name="number"
+                placeholder="+12364587985"
+              />
+              <Item
+                label="CountryCode"
+                name="numbercountrycode"
+                placeholder="+1"
+              />
+              {/* Currnetly I am using Text but we will change as select*/}
+              <Item
+                label="Payment Method"
+                name="paymentMethod"
+                placeholder="fiat wire"
+              />
+              <Item label="Margin" name="margin" placeholder="1.00" />
+              <Item
+                label="Email"
+                name="email"
+                icon={<MailIcon />}
+                placeholder="please input your e-mail"
+              />
+              <Item
+                label="Password"
+                name="password"
+                placeholder="please input your password"
+                type={eye1 ? "text" : "password"}
+                icon={
+                  eye1 ? (
+                    <div onClick={() => setEye1(false)}>
+                      <EyeOffIcon />
+                    </div>
+                  ) : (
+                    <div onClick={() => setEye1(true)}>
+                      <EyeIcon />
+                    </div>
+                  )
+                }
+              />
+              <Item
+                label="Confirm Password"
+                name="confirmPassword"
+                placeholder="please confirm your password"
+                type={eye2 ? "text" : "password"}
+                icon={
+                  eye2 ? (
+                    <div onClick={() => setEye2(false)}>
+                      <EyeOffIcon />
+                    </div>
+                  ) : (
+                    <div onClick={() => setEye2(true)}>
+                      <EyeIcon />
+                    </div>
+                  )
+                }
+              />
+              <Button
+                width={"100%"}
+                height={55}
+                background={"#7956ff"}
+                hoveredBackground={"#684ae2"}
+                boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+                borderRadius={10}
+                typeof="submit"
+              >
+                <Label
+                  fontSize={20}
+                  lineHeight={27}
+                  fontColor={"white"}
+                  letterSpacing={2}
+                >
+                  Create account
+                </Label>
+              </Button>
+            </Form>
+          </Formik>
+          <div>
+            <Label fontSize={16} lineHeight={24} fontColor={"#7B7777"}>
+              Already have an account ?{" "}
+              <Link to={"/"} style={{ textDecoration: "none" }}>
+                <Label fontColor={"#007DF8"}>Sign In</Label>
+              </Link>
+            </Label>
+          </div>
+        </SignUpCard>
+      </SignWrapper>
     </RegisterWrapper>
   );
 };

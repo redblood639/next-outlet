@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import UserImg from "@/assets/images/user.png";
 
 export const RegisterWrapper = styled.div`
   /*  */
@@ -9,25 +8,15 @@ export const RegisterWrapper = styled.div`
   align-items: center;
 `;
 
-export const UserImage = styled.div`
-  width: 124px;
-  height: 124px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url(${UserImg});
-
-  position: absolute;
-  top: -62px;
+export const SignWrapper = styled.div`
+  max-height: 100%;
+  min-width: 100%;
+  overflow: scroll;
 `;
 
-export const LoginCard = styled.div`
+export const SignUpCard = styled.div`
   position: relative;
-
-  width: 519px;
-  height: 741px;
   background: #ffffff;
-  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
 
   /*  */
   display: flex;

@@ -4,6 +4,7 @@ export type ButtonType = {
   width?: string;
   height?: number;
   background?: string;
+  hoveredBackground?: string;
   boxShadow?: string;
   borderRadius?: number;
   border?: string;

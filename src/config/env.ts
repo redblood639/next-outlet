@@ -1,17 +1,17 @@
 const env = {
   development: {
-    BASE_URL: "http://localhost:8080/api",
-    USER_NAME: "shadowmaster0419@gmail.com",
+    BASE_URL: "http://localhost:7000/supaki/partner-dashboard/",
+    USER_NAME: "test@gmail.com",
     PASSWORD: "samplereact",
   },
   production: {
     BASE_URL: "https://www.example.com/",
-    USER_NAME: "shadowmaster0419@gmail.com",
+    USER_NAME: "test@gmail.com",
     PASSWORD: "samplereact",
   },
   test: {
     BASE_URL: "https://www.example.com/",
-    USER_NAME: "shadowmaster0419@gmail.com",
+    USER_NAME: "test@gmail.com",
     PASSWORD: "samplereact",
   },
 };

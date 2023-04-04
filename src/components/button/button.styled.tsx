@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { ButtonType } from "@/types/button";
 
 export const ButtonWrapper = styled.button<ButtonType>`
-  width: ${(props) => `${props.width}` || `1rem`};
-  height: ${(props) => `${props.height}px` || `1rem`};
+  width: ${(props) => `${props.width}` || `14px`};
+  height: ${(props) => `${props.height}px` || `14px`};
 
   background: ${(props) => props.background || `white`};
   box-shadow: ${(props) => props.boxShadow || `none`};
@@ -16,7 +16,7 @@ export const ButtonWrapper = styled.button<ButtonType>`
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    background: ${(props) => props.hoveredBackground || `#684ae2`};
   }
 
   @media screen and (max-width: 1440px) {
